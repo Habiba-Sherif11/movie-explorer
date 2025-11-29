@@ -23,4 +23,10 @@ Movie Explorer is a web application that allows users to browse movies dynamical
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/movie-explorer.git
+   https://github.com/Habiba-Sherif11/movie-explorer.git
+2. Navigate to the project directory
+3. Open index.html in your preferred browser. You can simply double-click the file or use a live server extension (recommended for full functionality).
+4. Start exploring movies:
+   - Use the search bar to find movies by title.
+   - Click the sidebar menu to filter by category (Now Playing, Popular, Top Rated, Trending, Upcoming).
+   - Hover over any movie card to see the full description, release date, and rating.
