@@ -13,7 +13,7 @@ const SAMPLE_MOVIES = [
     {
         id: 1,
         title: "The Shawshank Redemption",
-        overview: "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an pointiff warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an pointiff prison contraband smuggler named Red -- for his integrity and unquenchable sense of hope.",
+        overview: "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an autocratic warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including a prison contraband smuggler named Red -- for his integrity and unquenchable sense of hope.",
         poster_path: null,
         release_date: "1994-09-23",
         vote_average: 8.7
@@ -143,6 +143,7 @@ async function loadMovies(category) {
 
 /**
  * Search movies by query
+ * In demo mode, filters sample data by title
  */
 async function searchMovies() {
     const query = searchInput.value.trim();
@@ -153,6 +154,16 @@ async function searchMovies() {
     }
     
     categoryTitle.textContent = `Search Results: "${query}"`;
+    
+    // Use demo data search when API key is not configured
+    if (DEMO_MODE) {
+        const filteredMovies = SAMPLE_MOVIES.filter(movie => 
+            movie.title.toLowerCase().includes(query.toLowerCase()) ||
+            movie.overview.toLowerCase().includes(query.toLowerCase())
+        );
+        displayMovies(filteredMovies);
+        return;
+    }
     
     try {
         const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}&language=en-US&page=1`);
