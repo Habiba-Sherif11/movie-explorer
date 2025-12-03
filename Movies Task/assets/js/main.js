@@ -1,7 +1,7 @@
 // main.js
 
 // ======= TMDb API Config =======
-const API_KEY = '760e772a27c964ee1a7be181bcd6a7be'; 
+const API_KEY = 'Your Api Key'; 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -199,4 +199,5 @@ contactForm.addEventListener('submit', (e) => {
         alert("Form submitted successfully!");
         contactForm.reset();
     }
+
 });
