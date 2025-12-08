@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🎬 Movie Explorer</h1>
+            <p class="tagline">Discover your next favorite movie</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search for movies..." 
+                    autocomplete="off"
+                >
+                <button id="searchBtn">Search</button>
+            </div>
+        </section>
+
+        <!-- Category Tabs -->
+        <section class="category-tabs">
+            <button class="tab-btn active" data-category="popular">Popular</button>
+            <button class="tab-btn" data-category="trending">Trending</button>
+            <button class="tab-btn" data-category="top-rated">Top Rated</button>
+            <button class="tab-btn" data-category="now-playing">Now Playing</button>
+            <button class="tab-btn" data-category="upcoming">Upcoming</button>
+        </section>
+
+        <!-- Movies Grid -->
+        <section id="moviesSection">
+            <h2 id="sectionTitle">Popular Movies</h2>
+            <div id="moviesGrid" class="movies-grid">
+                <!-- Movies will be loaded here -->
+            </div>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading movies...</p>
+            </div>
+            <div id="error" class="error" style="display: none;"></div>
+        </section>
+
+        <!-- Movie Details Modal -->
+        <div id="movieModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="movieDetails"></div>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <section id="contactSection" class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Have questions or suggestions? We'd love to hear from you!</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            <div id="contactSuccess" class="success-message" style="display: none;">
+                Thank you for your message! We'll get back to you soon.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Movie Explorer. Powered by TMDB API.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
