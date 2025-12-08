@@ -242,14 +242,13 @@ function displayMovieDetails(movie) {
 function handleContactForm(e) {
     e.preventDefault();
     
-    // Simple form handling (in a real app, this would send to a backend)
+    // Form handling - displays success message locally
+    // In a production app, this would send data to a backend endpoint
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         message: document.getElementById('message').value
     };
-
-    console.log('Contact form submitted:', formData);
     
     // Show success message
     contactSuccess.style.display = 'block';

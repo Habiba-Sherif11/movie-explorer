@@ -26,9 +26,10 @@ app.get('/', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
+  const isDevelopment = process.env.NODE_ENV !== 'production';
   res.status(500).json({ 
     error: 'Something went wrong!',
-    message: err.message 
+    ...(isDevelopment && { message: err.message })
   });
 });
 

@@ -3,6 +3,10 @@ const axios = require('axios');
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.TMDB_API_KEY;
 
+if (!API_KEY) {
+  console.warn('WARNING: TMDB_API_KEY is not set. API calls will fail.');
+}
+
 class TMDBService {
   /**
    * Search for movies by query

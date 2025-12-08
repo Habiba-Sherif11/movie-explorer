@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const tmdbService = require('../services/tmdb');
 
+// Helper function to validate page number
+function validatePage(page) {
+  if (page && (isNaN(page) || parseInt(page) < 1)) {
+    throw new Error('Page must be a positive integer');
+  }
+  return page ? parseInt(page) : 1;
+}
+
 /**
  * GET /api/movies/search
  * Search for movies by query
@@ -14,7 +22,8 @@ router.get('/search', async (req, res, next) => {
       return res.status(400).json({ error: 'Query parameter is required' });
     }
 
-    const data = await tmdbService.searchMovies(query, page);
+    const validPage = validatePage(page);
+    const data = await tmdbService.searchMovies(query, validPage);
     res.json(data);
   } catch (error) {
     next(error);
@@ -28,7 +37,8 @@ router.get('/search', async (req, res, next) => {
 router.get('/popular', async (req, res, next) => {
   try {
     const { page } = req.query;
-    const data = await tmdbService.getPopularMovies(page);
+    const validPage = validatePage(page);
+    const data = await tmdbService.getPopularMovies(validPage);
     res.json(data);
   } catch (error) {
     next(error);
@@ -42,7 +52,8 @@ router.get('/popular', async (req, res, next) => {
 router.get('/trending', async (req, res, next) => {
   try {
     const { timeWindow, page } = req.query;
-    const data = await tmdbService.getTrendingMovies(timeWindow, page);
+    const validPage = validatePage(page);
+    const data = await tmdbService.getTrendingMovies(timeWindow, validPage);
     res.json(data);
   } catch (error) {
     next(error);
@@ -56,7 +67,8 @@ router.get('/trending', async (req, res, next) => {
 router.get('/top-rated', async (req, res, next) => {
   try {
     const { page } = req.query;
-    const data = await tmdbService.getTopRatedMovies(page);
+    const validPage = validatePage(page);
+    const data = await tmdbService.getTopRatedMovies(validPage);
     res.json(data);
   } catch (error) {
     next(error);
@@ -70,7 +82,8 @@ router.get('/top-rated', async (req, res, next) => {
 router.get('/now-playing', async (req, res, next) => {
   try {
     const { page } = req.query;
-    const data = await tmdbService.getNowPlayingMovies(page);
+    const validPage = validatePage(page);
+    const data = await tmdbService.getNowPlayingMovies(validPage);
     res.json(data);
   } catch (error) {
     next(error);
@@ -84,7 +97,8 @@ router.get('/now-playing', async (req, res, next) => {
 router.get('/upcoming', async (req, res, next) => {
   try {
     const { page } = req.query;
-    const data = await tmdbService.getUpcomingMovies(page);
+    const validPage = validatePage(page);
+    const data = await tmdbService.getUpcomingMovies(validPage);
     res.json(data);
   } catch (error) {
     next(error);
